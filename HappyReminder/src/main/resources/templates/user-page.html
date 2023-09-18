@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8"/>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<title></title>
+	</head>
+	<body>
+		<p th:text="'User Data: '+${info}"/>
+		<p th:text="'email: '+${userEmailID}" id="SpringUserEmailID">
+		<p th:text="'personName: '+${personName}" id="SpringPersonName">
+		<p th:text="'birthDate: '+${birthDate}" id="SpringBirthDate">
+		<p th:text="'relation: '+${relation}" id="SpringRelation">
+		<p th:text="'reminderDate: '+${reminderDate}" id="SpringReminderDate">\
+		<p th:text="'timezone '+${timezone}" id="SpringTimezone">
+		<p th:text="${obj}" id="SpringObj">
+		<form action="/addNewPerson" method="POST" id="form">
+			<label for="personName">Person's Name</label>
+			<input type="text" id="personName" required>
+			<label for="birthDate">Birth Date</label>
+			<input type="date" id="birthDate" required>
+			<label for="relation">Select Relationship</label>
+			<select id="relation" required>
+				<option value="friend">Friend</option>
+				<option value="family">Family</option>
+				<option value="coworker">Co-worker</option>
+				<option value="acquaintance">Acquaintance</option>
+				<option value="other">Other</option>
+			</select>
+			<label for="reminderDate">Reminder Date</label>
+			<input type="date" id="reminderDate" required>
+			<select id="timezone" required>
+				<option value="pacific">Pacific Time (PT)</option>
+				<option value="mountain">Mountain Time (MT)</option>
+			</select>
+			
+			<input type="submit">
+		</form>
+		<div id="boxContainer">
+			
+		</div>
+		<script src="UpdateForm.js"></script>
+	</body>
+</html>
