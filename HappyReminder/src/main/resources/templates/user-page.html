@@ -3,42 +3,126 @@
 	<head>
 		<meta charset="UTF-8"/>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<title></title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+		<title>Happy Reminder</title>
+		<style type="text/css">
+			@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+			* {
+			  box-sizing: border-box;
+			  margin: 0;
+			  padding: 0;
+			}
+			body {
+			  font-family: 'Poppins', sans-serif;
+			  background: linear-gradient(to bottom right, #ff966d, #fa538d, #89379c);
+			  color: #fff;
+			  line-height: 1.6;
+			}
+			.card {
+			  background-color: #fff;
+			  color: #333;
+			  border-radius: 15px;
+			  padding: 40px 50px;
+			  margin: 10px auto;
+			  position: relative;
+			  width: 33%;
+			}
+			.close {
+			  position: absolute;
+			  top: 10px;
+			  right: 20px;
+			  cursor: pointer;
+			  background: none;
+			  border: none;
+			}
+			.container {
+			  height: 60px;
+			  padding: 0 20px;
+			  background: #302f2f;
+			  color: pink;
+			  text-align: center;
+			}
+			.app-title {
+			  position:relative;
+			  top:10px;
+			}
+			input, select {
+			  margin:auto;
+			  display: flex;
+			  flex-direction: row;
+			  border: 1px solid #ccc;
+			  padding: 8px 10px;
+			  border-radius: 8px;
+			}
+			.card h2 {
+			  font-size: 30px;
+			  font-weight: 600;
+			  text-align: center;
+			}
+			.center-labels {
+				padding: 5px;
+				text-align:center;
+			}
+			#footer {
+				position: absolute;
+				bottom: 0;
+				width: 100%;
+				height: 2.5rem; /* Footer height */
+				text-align:center;
+				background: linear-gradient(to right, #ff966d, #fa538d, #ff966d);;
+				border-radius: 10px;
+				color: white;
+			}
+			.footer-app-title {
+			  position:relative;
+			  top:7px;
+			}
+		</style>
 	</head>
 	<body>
-		<p th:text="'User Data: '+${info}"/>
-		<p th:text="'email: '+${userEmailID}" id="SpringUserEmailID">
-		<p th:text="'personName: '+${personName}" id="SpringPersonName">
-		<p th:text="'birthDate: '+${birthDate}" id="SpringBirthDate">
-		<p th:text="'relation: '+${relation}" id="SpringRelation">
-		<p th:text="'reminderDate: '+${reminderDate}" id="SpringReminderDate">\
-		<p th:text="'timezone '+${timezone}" id="SpringTimezone">
-		<p th:text="${obj}" id="SpringObj">
-		<form action="/addNewPerson" method="POST" id="form">
-			<label for="personName">Person's Name</label>
-			<input type="text" id="personName" required>
-			<label for="birthDate">Birth Date</label>
-			<input type="date" id="birthDate" required>
-			<label for="relation">Select Relationship</label>
-			<select id="relation" required>
-				<option value="friend">Friend</option>
-				<option value="family">Family</option>
-				<option value="coworker">Co-worker</option>
-				<option value="acquaintance">Acquaintance</option>
-				<option value="other">Other</option>
-			</select>
-			<label for="reminderDate">Reminder Date</label>
-			<input type="date" id="reminderDate" required>
-			<select id="timezone" required>
-				<option value="pacific">Pacific Time (PT)</option>
-				<option value="mountain">Mountain Time (MT)</option>
-			</select>
-			
-			<input type="submit">
-		</form>
+        <header>
+            <div class="container">
+            	<h2 class="app-title">Happy Reminder</h2>
+            </div>
+        </header>
+		<div class="card">
+			<form action="/addNewPerson" method="POST" id="form">
+				<h2 style="text-align:center">Add a New Birthday Reminder</h2>
+				<div class="center-labels"><label for="personName" style="text-align:center">Person's Name</label></div>
+				<input type="text" id="personName" required>
+				<div class="center-labels"><label for="birthDate">Birth Date</label></div>
+				<input type="date" id="birthDate" required>
+				<div class="center-labels"><label for="relation">Select Relationship</label></div>
+				<select id="relation" required>
+					<option value="friend">Friend</option>
+					<option value="family">Family</option>
+					<option value="coworker">Co-worker</option>
+					<option value="acquaintance">Acquaintance</option>
+					<option value="other">Other</option>
+				</select>
+				<div class="center-labels"><label for="reminderDate">Reminder Date</label></div>
+				<input type="date" id="reminderDate" required>
+				<select id="timezone" required>
+					<option value="pacific">Pacific Time (PT)</option>
+					<option value="mountain">Mountain Time (MT)</option>
+				</select>
+				
+				<input type="submit">
+				
+			</form>
+		</div>
 		<div id="boxContainer">
 			
 		</div>
+		<p style="visibility: hidden" th:text="'User Data: '+${info}"/>
+		<p style="visibility: hidden" th:text="'email: '+${userEmailID}" id="SpringUserEmailID"/>
+		<p style="visibility: hidden" th:text="'personName: '+${personName}" id="SpringPersonName"/>
+		<p style="visibility: hidden" th:text="'birthDate: '+${birthDate}" id="SpringBirthDate"/>
+		<p style="visibility: hidden" th:text="'relation: '+${relation}" id="SpringRelation"/>
+		<p style="visibility: hidden" th:text="'reminderDate: '+${reminderDate}" id="SpringReminderDate"/>
+		<p style="visibility: hidden" th:text="'timezone '+${timezone}" id="SpringTimezone"/>
+		<p hidden th:text="${obj}" id="SpringObj"></p>
+		<!-- <footer id="footer"><div class="footer-app-title"><a href="https://www.linkedin.com/in/vishal-s-175504102/">A Vishal Siddireddy Production</a></div></footer>  -->
 		<script src="UpdateForm.js"></script>
 	</body>
 </html>

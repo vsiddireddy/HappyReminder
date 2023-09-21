@@ -1,7 +1,9 @@
 package com.vsiddireddy.HappyReminder;
 
 
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -24,6 +26,10 @@ public class UserRepository {
     	String query = "INSERT INTO User (id, name) VALUES (?, ?)";
     	jdbcTemplate.update(query, user.emailID, user.getName());
     	
+    }
+    
+    public JdbcTemplate getJdbcTemplate() {
+    	return jdbcTemplate;
     }
     
     public String getName(String emailID) {
@@ -51,13 +57,18 @@ public class UserRepository {
     	this.jdbcTemplate.update(query, UUID.randomUUID().toString(), email, name, relation, birthDate, reminderDate, timezone);
     }
     
-    public void deleteReminderPerson(UUID uuid) {
+    public void deleteReminderPerson(String uuid, boolean b) {
     	String query = "DELETE FROM ReminderInfo WHERE id=?";
     	this.jdbcTemplate.update(query, uuid);
     }
+
+    public void deleteReminderPerson(String name) {
+    	String query = "DELETE FROM ReminderInfo WHERE name=?";
+    	this.jdbcTemplate.update(query, name);
+    }
     
     public List<Map<String, Object>> getAllReminders(String email) {
-    	String query = "SELECT name,relation,birthDate,reminderDate,timezone FROM ReminderInfo WHERE userEmail=?";
+    	String query = "SELECT id,name,relation,birthDate,reminderDate,timezone FROM ReminderInfo WHERE userEmail=?";
 
     	/*
     	String query1 = "SELECT name FROM ReminderInfo WHERE userEmail=?";
@@ -81,8 +92,12 @@ public class UserRepository {
     	return names;
     }
     
-    public List<Map<String, Object>> getAllReminders() {
+    public List<Map<String, Object>> getAllReminders() throws SQLException {
     	return this.jdbcTemplate.queryForList("SELECT name,relation,birthDate,reminderDate,timezone FROM ReminderInfo");
+    }
+    
+    public List<Map<String, Object>> getAllRemindersFullData() {
+    	return this.jdbcTemplate.queryForList("SELECT userEmail,name,relation,birthDate,reminderDate,timezone FROM ReminderInfo");
     }
     
 }

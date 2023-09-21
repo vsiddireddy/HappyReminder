@@ -21,7 +21,8 @@ public class SecurityConfig {
 					}
                     auth.anyRequest().authenticated();
                 })
-                .oauth2Login(loginConfigurer -> loginConfigurer.successHandler(new AuthDefaultHandler()))
+                .oauth2Login(loginConfigurer -> loginConfigurer.successHandler(new AuthDefaultHandler())
+                .defaultSuccessUrl("/user"))
                 .build();
 	}
 }
