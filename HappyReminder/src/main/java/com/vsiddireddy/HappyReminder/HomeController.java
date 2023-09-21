@@ -47,9 +47,9 @@ public class HomeController {
     public DataSource dataSource() {
         DataSourceBuilder<?> dataSourceBuilder = DataSourceBuilder.create();
         dataSourceBuilder.driverClassName("com.mysql.cj.jdbc.Driver");
-        dataSourceBuilder.url("jdbc:mysql://root:ff0jk0LiSmcaHbaXmDDX@containers-us-west-208.railway.app:7939/railway");
-        dataSourceBuilder.username("root");
-        dataSourceBuilder.password("ff0jk0LiSmcaHbaXmDDX");
+        dataSourceBuilder.url("jdbc:mysql://happyreminderdatabase.crkvwrlottpr.us-west-1.rds.amazonaws.com:3306/HappyReminderDatabase");
+        dataSourceBuilder.username("admin");
+        dataSourceBuilder.password("ChampionOne1!");
         return dataSourceBuilder.build();
     }
 	
