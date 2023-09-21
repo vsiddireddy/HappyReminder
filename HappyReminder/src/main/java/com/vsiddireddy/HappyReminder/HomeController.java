@@ -47,7 +47,7 @@ public class HomeController {
     public DataSource dataSource() {
         DataSourceBuilder<?> dataSourceBuilder = DataSourceBuilder.create();
         dataSourceBuilder.driverClassName("com.mysql.cj.jdbc.Driver");
-        dataSourceBuilder.url("mysql://root:ff0jk0LiSmcaHbaXmDDX@containers-us-west-208.railway.app:7939/railway");
+        dataSourceBuilder.url("jdbc:mysql://root:ff0jk0LiSmcaHbaXmDDX@containers-us-west-208.railway.app:7939/railway");
         dataSourceBuilder.username("root");
         dataSourceBuilder.password("ff0jk0LiSmcaHbaXmDDX");
         return dataSourceBuilder.build();
