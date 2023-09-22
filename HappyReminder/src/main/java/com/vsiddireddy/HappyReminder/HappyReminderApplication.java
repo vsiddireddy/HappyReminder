@@ -50,7 +50,7 @@ public class HappyReminderApplication {
 		// 53 is min, 11 is hr
 		Trigger trigger = newTrigger()
 				.withIdentity("trigger1")
-				.withSchedule(CronScheduleBuilder.cronSchedule("0 53 11 ? * *"))
+				.withSchedule(CronScheduleBuilder.cronSchedule("0 30 10 ? * *"))
 				.forJob(sendEmails)
 				.build();
 		
